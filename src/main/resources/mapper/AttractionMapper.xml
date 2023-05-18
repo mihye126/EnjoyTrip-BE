@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.trip.mapper.AttractionMapper">
+
+  <select id="findAll" resultType="Attraction" >
+    select info.content_id contentID, content_type_id, title, concat(addr1,' ',addr2) address, tel, first_image, sido_code,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+    on info.content_id= `description`.content_id
+    </select>
+
+  <select id="findByContentID" resultType="Attraction" parameterType="String">
+    select info.content_id contentID, content_type_id, title, concat(addr1,' ',addr2) address, tel, first_image, sido_code,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where info.content_id=#{contentID}
+  </select>
+
+<!--  <select id="search" resultType="Attraction" parameterType="map">-->
+<!--    select info.content_id contentID, content_type_id, title, concat(addr1,' ',addr2) address, tel, first_image, sido_code,  latitude, longitude, overview-->
+<!--    from attraction_info info left join attraction_description `description`-->
+<!--                                        on info.content_id= `description`.content_id-->
+<!--    where  sido_code=#{sidoCode} and content_type_id=#{contentTypeID}-->
+<!--  </select>-->
+
+</mapper>
+
+
