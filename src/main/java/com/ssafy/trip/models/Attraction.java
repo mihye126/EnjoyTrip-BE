@@ -12,7 +12,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class Attraction {
 
     private String contentID;

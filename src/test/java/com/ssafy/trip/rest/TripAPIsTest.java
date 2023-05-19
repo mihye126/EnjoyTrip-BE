@@ -2,7 +2,7 @@ package com.ssafy.trip.rest;
 
 import com.github.javafaker.Faker;
 import com.jayway.jsonpath.JsonPath;
-import com.prgrms.addressbook.auth.CurrentUser;
+import com.ssafy.trip.models.LoginUser;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,8 +18,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import static com.prgrms.addressbook.utils.JsonUtils.fromJson;
-import static com.prgrms.addressbook.utils.JsonUtils.toJson;
+import static com.ssafy.trip.utils.JsonUtils.fromJson;
+import static com.ssafy.trip.utils.JsonUtils.toJson;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -178,9 +178,9 @@ public class TripAPIsTest {
         assertThat(expire).isNotNull();
 
         String decodedToken = new String(Base64.getDecoder().decode(token), StandardCharsets.UTF_8);
-        CurrentUser currentUser = fromJson(decodedToken, CurrentUser.class);
+        LoginUser loginUser = fromJson(decodedToken, LoginUser.class);
         // $.data.expire 값과 currentUser.getExpire() 값은 같아야 함
-        assertThat(expire).isEqualTo(currentUser.getExpire());
+        assertThat(expire).isEqualTo(loginUser.getExpire());
         // 토큰은 현재 시간으로부터 1시간 후 만료되야 함
         assertThat(expire).isLessThanOrEqualTo(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1));
     }

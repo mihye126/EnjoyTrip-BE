@@ -13,7 +13,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class Plan {
 
     private long id;
