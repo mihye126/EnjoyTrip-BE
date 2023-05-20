@@ -1,4 +1,4 @@
-package com.ssafy.trip.auth.domain;
+package com.ssafy.trip.infrastructure;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package com.ssafy.trip.auth.application;
+package com.ssafy.trip.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

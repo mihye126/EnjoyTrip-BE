@@ -10,9 +10,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.github.javafaker.Faker;
 import com.jayway.jsonpath.JsonPath;
-import com.ssafy.trip.auth.application.AuthService;
-import com.ssafy.trip.auth.dto.TokenRequest;
-import com.ssafy.trip.auth.infrastructure.JwtTokenProvider;
+import com.ssafy.trip.services.AuthService;
+import com.ssafy.trip.interfaces.rest.dto.TokenRequest;
+import com.ssafy.trip.infrastructure.JwtTokenProvider;
 import com.ssafy.trip.models.LoginUser;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

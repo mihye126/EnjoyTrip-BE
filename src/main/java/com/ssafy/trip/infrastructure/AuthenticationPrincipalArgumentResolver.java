@@ -1,9 +1,7 @@
-package com.ssafy.trip.auth.ui;
+package com.ssafy.trip.infrastructure;
 
-import com.ssafy.trip.auth.application.AuthService;
-import com.ssafy.trip.auth.application.AuthorizationException;
-import com.ssafy.trip.auth.domain.AuthenticationPrincipal;
-import com.ssafy.trip.auth.infrastructure.AuthorizationExtractor;
+import com.ssafy.trip.services.AuthService;
+import com.ssafy.trip.exception.AuthorizationException;
 import com.ssafy.trip.models.LoginUser;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;

@@ -1,4 +1,4 @@
-package com.ssafy.trip.auth.infrastructure;
+package com.ssafy.trip.infrastructure;
 
 import static com.ssafy.trip.utils.JsonUtils.*;
 

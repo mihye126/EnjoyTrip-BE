@@ -1,4 +1,4 @@
-package com.ssafy.trip.auth.infrastructure;
+package com.ssafy.trip.infrastructure;
 
 import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;

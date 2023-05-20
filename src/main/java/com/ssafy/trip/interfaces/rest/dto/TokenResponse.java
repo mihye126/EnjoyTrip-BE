@@ -1,4 +1,4 @@
-package com.ssafy.trip.auth.dto;
+package com.ssafy.trip.interfaces.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

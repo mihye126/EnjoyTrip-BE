@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     Optional<User> selectOne(Map map) throws SQLException;
     Optional<User> findByEmail(String email) throws SQLException;
+    Optional<User> findById(long id) throws SQLException;
 
     int updateUser(User user) throws SQLException;
     int updatePassword(Map map) throws SQLException;

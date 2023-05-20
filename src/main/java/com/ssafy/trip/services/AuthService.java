@@ -1,15 +1,15 @@
-package com.ssafy.trip.auth.application;
+package com.ssafy.trip.services;
 
 import static com.ssafy.trip.utils.JsonUtils.toJson;
 
-import com.ssafy.trip.auth.dto.TokenRequest;
-import com.ssafy.trip.auth.dto.TokenResponse;
-import com.ssafy.trip.auth.infrastructure.JwtTokenProvider;
+import com.ssafy.trip.interfaces.rest.dto.TokenRequest;
+import com.ssafy.trip.infrastructure.JwtTokenProvider;
+import com.ssafy.trip.exception.AuthorizationException;
 import com.ssafy.trip.exception.member.NoSuchMemberException;
 import com.ssafy.trip.mapper.UserMapper;
 import com.ssafy.trip.models.LoginUser;
 import com.ssafy.trip.models.User;
-import java.util.Date;
+import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +38,6 @@ public class AuthService {
             loginUser.setExpire(System.currentTimeMillis()+JwtTokenProvider.ACCESS_TOKEN_EXPIRE_MINUTES);
             String accessToken = jwtTokenProvider.createToken(request.getEmail(),JwtTokenProvider.ACCESS, toJson(loginUser));
             loginUser.setAccessToken(accessToken);
-
             user.setToken(refreshToken);
 
             userMapper.updateUser(user);
@@ -51,6 +50,17 @@ public class AuthService {
 
     }
 
+    public String logout(long id){
+        try {
+            User user=userMapper.findById(id).orElseThrow(NoSuchMemberException::new);
+            user.setToken(null);
+            userMapper.updateUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "정상적으로 로그아웃되었습니다.";
+    }
+
     public LoginUser findMemberByToken(String credentials) {
         if (!jwtTokenProvider.validateToken(credentials)) {
             return new LoginUser();
@@ -61,9 +71,7 @@ public class AuthService {
 
         try {
             User user = userMapper.findByEmail(email).orElseThrow(NoSuchMemberException::new);
-            LoginUser loginUser=new LoginUser(user,credentials,expire);
-
-            return loginUser;
+            return new LoginUser(user,credentials,expire);
         } catch (Exception e) {
             return new LoginUser();
         }

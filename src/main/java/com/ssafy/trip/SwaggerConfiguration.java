@@ -25,7 +25,7 @@ public class SwaggerConfiguration {
 		ApiSelectorBuilder builder = docket.select();
 		
 		//apis(): controller가 있는 패키지 지정
-		builder = builder.apis(RequestHandlerSelectors.basePackage("com.enjoytrip.controller"));
+		builder = builder.apis(RequestHandlerSelectors.basePackage("com.ssafy.trip.interfaces.rest"));
 		
 		//paths(): api()로 선택된 api중 특정 path조건에 맞는 api들을 다시 필터링하여 문서화 함
 				//없어도 api를 사용하는데 문제가 없다면 안넣어도 됨 => paths를 이용하여 필터링함

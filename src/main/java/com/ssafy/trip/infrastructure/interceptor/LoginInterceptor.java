@@ -1,9 +1,9 @@
-package com.ssafy.trip.auth;
+package com.ssafy.trip.infrastructure.interceptor;
 
 import static com.ssafy.trip.utils.JsonUtils.fromJson;
 
-import com.ssafy.trip.auth.infrastructure.AuthorizationExtractor;
-import com.ssafy.trip.auth.infrastructure.JwtTokenProvider;
+import com.ssafy.trip.infrastructure.AuthorizationExtractor;
+import com.ssafy.trip.infrastructure.JwtTokenProvider;
 import com.ssafy.trip.models.LoginUser;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;

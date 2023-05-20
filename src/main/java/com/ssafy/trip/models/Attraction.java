@@ -14,22 +14,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @NoArgsConstructor
 public class Attraction {
 
-    private String contentID;
-    private String contentTypeID;
+    private long contentID;
+    private String content_type_id;
     private String title;
     private String address;
     private String tel;
     private String firstImage;
     private String sidoCode;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private String overview;
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
             .append("contentID", contentID)
-            .append("contentTypeID", contentTypeID)
+            .append("contentTypeID", content_type_id)
             .append("title", title)
             .append("address", address)
             .append("tel", tel)

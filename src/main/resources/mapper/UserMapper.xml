@@ -13,6 +13,10 @@
 		select * from user where user_email =#{user_email}
 	</select>
 
+	<select id="findById" resultType="User" parameterType="long">
+		select * from user where id =#{id}
+	</select>
+
 	<select id="check" resultType="User" parameterType="map">
 		select * from user where user_email =#{user_email} and user_pw=#{pw}
 	</select>
