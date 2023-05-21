@@ -19,7 +19,7 @@ public class Attraction {
     private String title;
     private String address;
     private String tel;
-    private String firstImage;
+    private String first_image;
     private String sidoCode;
     private double latitude;
     private double longitude;
@@ -33,7 +33,7 @@ public class Attraction {
             .append("title", title)
             .append("address", address)
             .append("tel", tel)
-            .append("firstImage", firstImage)
+            .append("firstImage", first_image)
             .append("sidoCode", sidoCode)
             .append("latitude", latitude)
             .append("longitude", longitude)

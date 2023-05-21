@@ -30,7 +30,7 @@ public class AttractionDto {
         this.title = source.getTitle();
         this.address = source.getAddress();
         this.tel = source.getTel();
-        this.firstImage = source.getFirstImage();
+        this.firstImage = source.getFirst_image();
         this.sidoCode = source.getSidoCode();
         this.latitude = source.getLatitude();
         this.longitude = source.getLongitude();
