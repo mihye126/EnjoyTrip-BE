@@ -2,14 +2,13 @@ package com.ssafy.trip.services;
 
 import static com.ssafy.trip.utils.JsonUtils.toJson;
 
-import com.ssafy.trip.interfaces.rest.dto.TokenRequest;
-import com.ssafy.trip.infrastructure.JwtTokenProvider;
 import com.ssafy.trip.exception.AuthorizationException;
 import com.ssafy.trip.exception.member.NoSuchMemberException;
+import com.ssafy.trip.infrastructure.JwtTokenProvider;
+import com.ssafy.trip.interfaces.rest.dto.TokenRequest;
 import com.ssafy.trip.mapper.UserMapper;
 import com.ssafy.trip.models.LoginUser;
 import com.ssafy.trip.models.User;
-import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

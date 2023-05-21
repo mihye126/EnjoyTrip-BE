@@ -11,7 +11,8 @@ public interface AttractionService {
 
     Optional<Attraction> findByContentID(String contentID) throws SQLException;
     List<Attraction> findAll() throws SQLException;
-    void insert(Attraction attraction) throws SQLException;
+    int insert(Attraction attraction) throws SQLException;
+    int delete(String contentID) throws SQLException;
 
 //    List<Attraction> selectAll() throws SQLException;
 

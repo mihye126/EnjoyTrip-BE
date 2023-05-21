@@ -2,7 +2,6 @@ package com.ssafy.trip.services;
 
 
 import com.ssafy.trip.models.User;
-import java.sql.SQLException;
 import java.util.Optional;
 
 public interface UserService {

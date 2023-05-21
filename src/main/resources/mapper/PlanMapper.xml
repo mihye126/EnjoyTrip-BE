@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.trip.mapper.PlanMapper">
+
+<!--  private long id;-->
+<!--  private long userId;-->
+<!--  private String userName;-->
+<!--  private String attractions;-->
+
+
+  <select id="findById" resultType="Plan" parameterType="long">
+    select * from plan where id =#{id}
+  </select>
+
+  <insert id="insert" parameterType="Plan">
+    insert into plan (userName, userId, attactions)  values (#{userId}, #{userName}, #{attractions})
+  </insert>
+
+
+  <delete id="delete" parameterType="long">
+    delete from plan where id = #{id}
+  </delete>
+
+  <update id="update" parameterType="Plan">
+    Update plan set userId =#{userId}, userName= #{userName}, attractions=#{attractions} where id = #{id}
+  </update>
+
+</mapper>

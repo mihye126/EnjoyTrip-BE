@@ -2,13 +2,12 @@ package com.ssafy.trip.interfaces.rest;
 
 import static com.ssafy.trip.web.ApiResult.succeed;
 
-import com.ssafy.trip.services.AuthService;
 import com.ssafy.trip.interfaces.rest.dto.TokenRequest;
 import com.ssafy.trip.models.LoginUser;
+import com.ssafy.trip.services.AuthService;
 import com.ssafy.trip.web.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

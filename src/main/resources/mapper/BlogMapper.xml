@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.trip.mapper.BlogMapper">
+<!--  private long id;-->
+<!--  private String title;-->
+<!--  private String content;-->
+<!--  private long userId;-->
+<!--  private String userName;-->
+
+
+  <select id="findById" resultType="Blog" parameterType="long">
+    select * from blog where id =#{id}
+  </select>
+
+  <insert id="insert" parameterType="Plan">
+    insert into blog (userId, userName, title, content) values (#{userId}, #{userName}, #{title},#{content})
+  </insert>
+
+
+  <delete id="delete" parameterType="long">
+    delete from plan where id = #{id}
+  </delete>
+
+  <update id="update" parameterType="Plan">
+    Update plan set userId =#{userId}, userName= #{userName}, title=#{title},content=#{content} where id = #{id}
+  </update>
+
+</mapper>

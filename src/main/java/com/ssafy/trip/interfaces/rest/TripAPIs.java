@@ -3,7 +3,9 @@ package com.ssafy.trip.interfaces.rest;
 import static com.ssafy.trip.web.ApiResult.failed;
 import static com.ssafy.trip.web.ApiResult.succeed;
 
+import com.ssafy.trip.exception.member.NoSuchMemberException;
 import com.ssafy.trip.interfaces.rest.dto.AttractionDto;
+import com.ssafy.trip.models.Attraction;
 import com.ssafy.trip.services.AttractionService;
 import com.ssafy.trip.web.ApiResult;
 import io.swagger.annotations.Api;
@@ -14,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,7 +38,7 @@ public class TripAPIs {
             return succeed(
                 attractionService.findByContentID(contentID)
                     .map(AttractionDto::new)
-                    .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 Attraction입니다."))
+                    .orElseThrow(NoSuchMemberException::new)
             );
         } catch (Exception e) {
             return failed(e);
@@ -55,6 +59,28 @@ public class TripAPIs {
             return failed(e);
         }
     }
+    @PostMapping("/trip")
+    @ApiOperation(notes="여행지 1개의 정보를 담고 있는 페이지.", value="Trip Detail")
+    public ApiResult<String> insert(@RequestBody Attraction attraction) {
 
+        try {
+            attractionService.insert(attraction);
+            return succeed("정상적으로 관광지 정보가 등록되었습니다. ");
+        } catch (Exception e) {
+            return failed(e);
+        }
+    }
+
+    @PutMapping("/trip")
+    @ApiOperation(notes="여행지 1개의 정보를 담고 있는 페이지.", value="Trip Detail")
+    public ApiResult<String> update(@RequestBody Attraction attraction) {
+
+        try {
+            attractionService.update(attraction);
+            return succeed("정상적으로 관광지 정보가 등록되었습니다. ");
+        } catch (Exception e) {
+            return failed(e);
+        }
+    }
 
 }
