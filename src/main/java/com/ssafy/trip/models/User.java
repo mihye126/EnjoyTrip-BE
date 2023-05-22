@@ -11,7 +11,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class User {
     private long id;
     private String user_pw;

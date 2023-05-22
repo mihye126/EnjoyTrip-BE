@@ -24,12 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api("Attraction(Trip)")
 @CrossOrigin
-public class TripAPIs {
+public class AttractionController {
 
     @Autowired
     private AttractionService attractionService;
 
-    @GetMapping("/trip/{contentID}")
+    @GetMapping("/trips/{contentID}")
     @ApiOperation(notes="여행지 1개의 정보를 담고 있는 페이지.", value="Trip Detail")
     public ApiResult<AttractionDto> read(
         @PathVariable String contentID
@@ -45,8 +45,8 @@ public class TripAPIs {
         }
     }
 
-    @GetMapping("/trip")
-    @ApiOperation(notes="여행지 1개의 정보를 담고 있는 페이지.", value="Trip Detail")
+    @GetMapping("/trips")
+    @ApiOperation(notes="여행지 전체 정보를 담고 있는 페이지.", value="Trip Detail")
     public ApiResult<List<AttractionDto>> list() {
         try {
             return succeed(

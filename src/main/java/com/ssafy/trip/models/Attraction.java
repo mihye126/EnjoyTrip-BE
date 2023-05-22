@@ -12,12 +12,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Attraction {
 
     private long contentID;
-    private String content_type_id;
+    private String contentTypeId;
     private String title;
     private String address;
     private String tel;
-    private String first_image;
+    private String firstImage;
     private String sidoCode;
+    private String gugunCode;
     private double latitude;
     private double longitude;
     private String overview;
@@ -26,12 +27,13 @@ public class Attraction {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
             .append("contentID", contentID)
-            .append("contentTypeID", content_type_id)
+            .append("contentTypeID", contentTypeId)
             .append("title", title)
             .append("address", address)
             .append("tel", tel)
-            .append("firstImage", first_image)
+            .append("firstImage", firstImage)
             .append("sidoCode", sidoCode)
+            .append("gugunCode", gugunCode)
             .append("latitude", latitude)
             .append("longitude", longitude)
             .append("overview", overview)

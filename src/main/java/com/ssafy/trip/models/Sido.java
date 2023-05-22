@@ -10,11 +10,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Sido {
 
-    String name;
-    String code;
+    private String name;
+    private String code;
 
     @Override
     public String toString() {

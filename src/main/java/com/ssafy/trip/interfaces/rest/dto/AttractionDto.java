@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class AttractionDto {
 
     private long contentID;
-    private String content_type_id;
+    private String conTentTypeId;
     private String title;
     private String address;
     private String tel;
@@ -24,11 +24,11 @@ public class AttractionDto {
 
     public AttractionDto(Attraction source) {
         this.contentID = source.getContentID();
-        this.content_type_id = source.getContent_type_id();
+        this.conTentTypeId = source.getContentTypeId();
         this.title = source.getTitle();
         this.address = source.getAddress();
         this.tel = source.getTel();
-        this.firstImage = source.getFirst_image();
+        this.firstImage = source.getFirstImage();
         this.sidoCode = source.getSidoCode();
         this.latitude = source.getLatitude();
         this.longitude = source.getLongitude();
@@ -39,7 +39,7 @@ public class AttractionDto {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
             .append("contentID", contentID)
-            .append("contentTypeID", content_type_id)
+            .append("contentTypeID", conTentTypeId)
             .append("title", title)
             .append("address", address)
             .append("tel", tel)

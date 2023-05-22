@@ -36,7 +36,7 @@ import org.springframework.test.web.servlet.ResultActions;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 @DisplayName("API 통합 테스트")
-public class TripAPIsTest {
+public class AttractionControllerTest {
 
     private static final String DEFAULT_HEADER = "X-AUTH-TOKEN";
 

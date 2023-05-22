@@ -18,6 +18,8 @@ public class LoginUser {
     private String userEmail;
     private long expire;
     private String accessToken;
+    private String refreshToken;
+    private boolean isAdmin;
 
     public LoginUser(User user, String credentials, long expire) {
         this.userName = user.getUser_name();

@@ -5,20 +5,99 @@
 
 <mapper namespace="com.ssafy.trip.mapper.AttractionMapper">
 
+
+<!--  Optional<Attraction> findByContentID(String contentID) throws SQLException;-->
+<!--  List<Attraction> findBySidoCode(String SidoCode) throws SQLException;-->
+<!--  List<Attraction> findByContentTypeId(String contentTypeId) throws SQLException;-->
+<!--  List<Attraction> findBySidoCodeAndContentTypeId(Map map) throws SQLException;-->
+<!--  List<Attraction> findByOverviewContainingOrTitleContaining(String keyword) throws SQLException;-->
+<!--  List<Attraction> findByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId(Map map) throws SQLException;-->
+<!--  List<Attraction> findByOverviewContainingOrTitleContainingAndSidoCode(Map map) throws SQLException;-->
+<!--  List<Attraction> findByOverviewContainingOrTitleContainingAndContentTypeId(Map map) throws SQLException;-->
+
+<!--  List<Attraction> findAll() throws SQLException;-->
+<!--  int insert(Attraction attraction) throws SQLException;-->
+<!--  int delete(String contentID) throws SQLException;-->
+<!--  int update(Attraction attraction) throws SQLException;-->
+
+
   <select id="findAll" resultType="Attraction" >
-    select info.content_id contentID, content_type_id, title, concat(addr1,' ',addr2) address, tel, first_image, sido_code,  latitude, longitude, overview
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
     on info.content_id= `description`.content_id
     </select>
 
   <select id="findByContentID" resultType="Attraction" parameterType="String">
-    select info.content_id contentID, content_type_id, title, concat(addr1,' ',addr2) address, tel, first_image, sido_code,  latitude, longitude, overview
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where info.content_id=#{contentID}
   </select>
 
-<!--  <select id="search" resultType="Attraction" parameterType="map">-->
+  <select id="findBySidoCode" resultType="Attraction" parameterType="String">
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where description.sido_code=#{sidoCode}
+  </select>
+
+  <select id="findByContentTypeId" resultType="Attraction" parameterType="String">
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where description.content_type_id=#{contentTypeId}
+  </select>
+
+  <select id="findBySidoCodeAndContentTypeId" resultType="Attraction" parameterType="hashMap">
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where info.content_type_id=#{contentTypeId} and info.sido_code=#{sidoCode}
+  </select>
+
+  <select id="findByOverviewContainingOrTitleContaining" resultType="Attraction" parameterType="String">
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%'
+  </select>
+
+  <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="String">
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where (info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%' ) and  info.sido_code=#{sidoCode}
+  </select>
+
+  <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="String">
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where (info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%' ) and  info.sido_code=#{sidoCode}
+  </select>
+
+
+  <select id="findByOverviewContainingOrTitleContainingAndContentTypeId" resultType="Attraction" parameterType="String">
+    select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where (info.title LIKE  '%' + #{keyword} + '%' or description.overview= '%' + #{keyword} + '%' ) and  info.content_type_id=#{contentTypeId}
+  </select>
+
+  <insert id="insert" parameterType="Attraction">
+    insert into attraction_info (content_id, content_type_id, title, addr1,tel,first_image,sido_code,gugun_code,latitude,longitude)
+        values (#{contentID}, #{contentTypeID}, #{title},#{address},#{tel},#{firstImage},#{sidoCode},#{gugunCode},#{latitude},#{longitude}) ;
+    insert into attraction_description (content_id, userName, title, content)
+        values (#{userId}, #{userName}, #{title},#{content});
+  </insert>
+
+  <insert id="insert" parameterType="Attraction">
+    insert into attraction_info (userId, userName, title, content) values (#{userId}, #{userName}, #{title},#{content});
+    insert into attraction_description (userId, userName, title, content) values (#{userId}, #{userName}, #{title},#{content})
+  </insert>
+
+
+  <!--  <select id="search" resultType="Attraction" parameterType="map">-->
 <!--    select info.content_id contentID, content_type_id, title, concat(addr1,' ',addr2) address, tel, first_image, sido_code,  latitude, longitude, overview-->
 <!--    from attraction_info info left join attraction_description `description`-->
 <!--                                        on info.content_id= `description`.content_id-->
