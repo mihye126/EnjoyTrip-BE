@@ -10,9 +10,18 @@
 <!--  private long userId;-->
 <!--  private String userName;-->
 
+<!--  Optional<Blog> findById(long id) throws SQLException;-->
+<!--  List<Blog> findByAll() throws SQLException;-->
+<!--  int insert(Blog blog) throws  SQLException;-->
+<!--  int delete(long id) throws  SQLException;-->
+<!--  int update(Blog blog) throws  SQLException;-->
+
 
   <select id="findById" resultType="Blog" parameterType="long">
     select * from blog where id =#{id}
+  </select>
+  <select id="findByAll" resultType="Blog">
+    select * from blog
   </select>
 
   <insert id="insert" parameterType="Plan">
@@ -25,7 +34,7 @@
   </delete>
 
   <update id="update" parameterType="Plan">
-    Update plan set userId =#{userId}, userName= #{userName}, title=#{title},content=#{content} where id = #{id}
+    Update plan set title=#{title},content=#{content} where id = #{id}
   </update>
 
 </mapper>

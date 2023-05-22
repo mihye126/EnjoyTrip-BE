@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class PlanServiceImpl implements PlanService{
 
     @Autowired
-    PlanMapper planMapper;
+    private PlanMapper planMapper;
 
     @Override
     public List<Plan> findAll() throws SQLException {

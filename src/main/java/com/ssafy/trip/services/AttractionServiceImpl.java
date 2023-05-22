@@ -5,7 +5,9 @@ import com.ssafy.trip.exception.member.NoSuchMemberException;
 import com.ssafy.trip.mapper.AttractionMapper;
 import com.ssafy.trip.models.Attraction;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,29 +22,6 @@ public class AttractionServiceImpl  implements AttractionService{ //serviceÏóêÏÑ
     public Optional<Attraction> findByContentID(String contentID) throws SQLException {
         return attractionMapper.findByContentID(contentID);
     }
-
-    @Override
-    public List<Attraction> findBySidoCode(String SidoCode) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Attraction> findByContentTypeId(String contentTypeId) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Attraction> findBySidoCodeAndContentTypeId(String SidoCode, String contentTypeId)
-        throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Attraction> findByOverviewContainingOrTitleContaining(String SidoCode,
-        String contentTypeId) throws SQLException {
-        return null;
-    }
-
     @Override
     public List<Attraction> findAll() throws SQLException {
         return attractionMapper.findAll();
@@ -61,6 +40,18 @@ public class AttractionServiceImpl  implements AttractionService{ //serviceÏóêÏÑ
 
     @Override
     public int update(Attraction attraction) throws SQLException {
-        return 0;
+        return attractionMapper.update(attraction);
+    }
+
+    @Override
+    public List<Attraction> search(String sidoCode, String conentTypeId, String keyword) throws SQLException {
+        Map<String, String> map=new HashMap<>();
+        map.put("sidoCode",sidoCode);
+        map.put("conentTypeId",conentTypeId);
+        if(keyword==null)
+            return  attractionMapper.findBySidoCodeAndContentTypeId(map);
+        map.put("keyword",keyword);
+        return attractionMapper.findByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId(map);
+
     }
 }

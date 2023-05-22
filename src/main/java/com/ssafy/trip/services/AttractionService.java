@@ -10,14 +10,16 @@ import org.springframework.stereotype.Service;
 public interface AttractionService {
 
     Optional<Attraction> findByContentID(String contentID) throws SQLException;
-    List<Attraction> findBySidoCode(String SidoCode) throws SQLException;
-    List<Attraction> findByContentTypeId(String contentTypeId) throws SQLException;
-    List<Attraction> findBySidoCodeAndContentTypeId(String SidoCode,String contentTypeId) throws SQLException;
-    List<Attraction> findByOverviewContainingOrTitleContaining(String SidoCode,String contentTypeId) throws SQLException;
+//    List<Attraction> findBySidoCode(String SidoCode) throws SQLException;
+//    List<Attraction> findByContentTypeId(String contentTypeId) throws SQLException;
+//    List<Attraction> findBySidoCodeAndContentTypeId(String SidoCode,String contentTypeId) throws SQLException;
+//    List<Attraction> findByOverviewContainingOrTitleContaining(String SidoCode,String contentTypeId) throws SQLException;
     List<Attraction> findAll() throws SQLException;
     int insert(Attraction attraction) throws SQLException;
     int delete(String contentID) throws SQLException;
     int update(Attraction attraction) throws SQLException;
+
+    List<Attraction>  search(String sidoCode, String conentTypeId, String keyword)  throws SQLException;
 //    List<Attraction> selectAll() throws SQLException;
 
 

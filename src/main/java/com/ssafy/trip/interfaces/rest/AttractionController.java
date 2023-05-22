@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -59,7 +60,7 @@ public class AttractionController {
             return failed(e);
         }
     }
-    @PostMapping("/trip")
+    @PostMapping("/trips")
     @ApiOperation(notes="여행지 1개의 정보를 담고 있는 페이지.", value="Trip Detail")
     public ApiResult<String> insert(@RequestBody Attraction attraction) {
 
@@ -71,12 +72,27 @@ public class AttractionController {
         }
     }
 
-    @PutMapping("/trip")
+    @PutMapping("/trips")
     @ApiOperation(notes="여행지 1개의 정보를 담고 있는 페이지.", value="Trip Detail")
     public ApiResult<String> update(@RequestBody Attraction attraction) {
 
         try {
             attractionService.update(attraction);
+            return succeed("정상적으로 관광지 정보가 등록되었습니다. ");
+        } catch (Exception e) {
+            return failed(e);
+        }
+    }
+
+    @GetMapping("/trips/search")
+    @ApiOperation(notes="여행지 1개의 정보를 담고 있는 페이지.", value="Trip Detail")
+    public ApiResult<String> search(
+        @RequestParam(value = "sidoCode",required = true )String sidoCode,
+        @RequestParam(value = "conentTypeId", required = false, defaultValue = "1") String conentTypeId,
+        @RequestParam(value = "keyword", required = false)String keyword) {
+
+        try {
+            attractionService.search(sidoCode,conentTypeId,keyword);
             return succeed("정상적으로 관광지 정보가 등록되었습니다. ");
         } catch (Exception e) {
             return failed(e);

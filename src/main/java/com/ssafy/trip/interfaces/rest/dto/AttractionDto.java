@@ -17,6 +17,7 @@ public class AttractionDto {
     private String tel;
     private String firstImage;
     private String sidoCode;
+    private String gugunCode;
     private double latitude;
     private double longitude;
     private String overview;
@@ -30,6 +31,7 @@ public class AttractionDto {
         this.tel = source.getTel();
         this.firstImage = source.getFirstImage();
         this.sidoCode = source.getSidoCode();
+        this.gugunCode=source.getGugunCode();
         this.latitude = source.getLatitude();
         this.longitude = source.getLongitude();
         this.overview = source.getOverview();
@@ -45,6 +47,7 @@ public class AttractionDto {
             .append("tel", tel)
             .append("firstImage", firstImage)
             .append("sidoCode", sidoCode)
+            .append("gugunCode", gugunCode)
             .append("latitude", latitude)
             .append("longitude", longitude)
             .append("overview", overview)

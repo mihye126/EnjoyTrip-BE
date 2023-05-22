@@ -10,10 +10,21 @@
 <!--  private String userName;-->
 <!--  private String attractions;-->
 
+<!--  Optional<Plan> findById(long id) throws SQLException;-->
+<!--  List<Plan> findByAll() throws SQLException;-->
+<!--  int insert(Plan plan) throws  SQLException;-->
+<!--  int delete(long id) throws  SQLException;-->
+<!--  int update(Plan plan) throws  SQLException;-->
+
 
   <select id="findById" resultType="Plan" parameterType="long">
     select * from plan where id =#{id}
   </select>
+
+  <select id="findByAll" resultType="Plan" >
+    select * from plan
+  </select>
+
 
   <insert id="insert" parameterType="Plan">
     insert into plan (userName, userId, attactions)  values (#{userId}, #{userName}, #{attractions})
@@ -25,7 +36,7 @@
   </delete>
 
   <update id="update" parameterType="Plan">
-    Update plan set userId =#{userId}, userName= #{userName}, attractions=#{attractions} where id = #{id}
+    Update plan set attractions=#{attractions} where id = #{id}
   </update>
 
 </mapper>

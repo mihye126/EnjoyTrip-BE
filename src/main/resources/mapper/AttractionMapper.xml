@@ -62,11 +62,11 @@
     where info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%'
   </select>
 
-  <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="String">
+  <select id="findByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId" resultType="Attraction" parameterType="String">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
-    where (info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%' ) and  info.sido_code=#{sidoCode}
+    where (info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%' ) and  info.sido_code=#{sidoCode} and  info.content_type_id=#{contentTypeId}
   </select>
 
   <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="String">
@@ -89,11 +89,6 @@
         values (#{contentID}, #{contentTypeID}, #{title},#{address},#{tel},#{firstImage},#{sidoCode},#{gugunCode},#{latitude},#{longitude}) ;
     insert into attraction_description (content_id, userName, title, content)
         values (#{userId}, #{userName}, #{title},#{content});
-  </insert>
-
-  <insert id="insert" parameterType="Attraction">
-    insert into attraction_info (userId, userName, title, content) values (#{userId}, #{userName}, #{title},#{content});
-    insert into attraction_description (userId, userName, title, content) values (#{userId}, #{userName}, #{title},#{content})
   </insert>
 
 
