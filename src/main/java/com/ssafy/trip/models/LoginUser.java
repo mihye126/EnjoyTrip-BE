@@ -28,6 +28,10 @@ public class LoginUser {
         this.accessToken = credentials;
         this.refreshToken=user.getToken();
         this.expire = expire;
+        if(user.getAdmin_check().equals("1")) {
+            this.isAdmin = true;
+        }
+        else this.isAdmin = false;
     }
 
     public boolean isExpired() {
@@ -47,6 +51,10 @@ public class LoginUser {
         this.userName = user.getUser_name();
         this.userPhone = user.getUser_phone();
         this.userEmail = user.getUser_email();
+        if(user.getAdmin_check().equals("1")) {
+            this.isAdmin = true;
+        }
+        else this.isAdmin = false;
     }
 
     public void setAccessToken(String accessToken) {
@@ -60,6 +68,7 @@ public class LoginUser {
             .append("userName", userName)
             .append("userPhone", userPhone)
             .append("userEmail", userEmail)
+            .append("isAdmin", isAdmin)
             .append("expire", expire).toString();
     }
 
