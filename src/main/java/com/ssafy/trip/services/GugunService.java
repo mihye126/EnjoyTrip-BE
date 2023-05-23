@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface GugunService {
-    Optional<Gugun> findByCode(String code) throws SQLException;
-    Optional<Gugun> findByName(String name) throws SQLException;
-    List<Gugun> findAll() throws SQLException;
+    Optional<Gugun> findByCode(String code) throws Exception;
+    Optional<Gugun> findByName(String name) throws Exception;
+    List<Gugun> findAll() throws Exception;
 }

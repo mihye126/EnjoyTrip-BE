@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface PlanService {
-    List<Plan> findAll() throws SQLException;
-    Optional<Plan> findById(long id) throws SQLException;
-    String insert(Plan plan) throws SQLException;
-    String delete(long id) throws SQLException;
-    String update(Plan plan) throws SQLException;
+    List<Plan> findAll() throws Exception;
+    Optional<Plan> findById(long id) throws Exception;
+    String insert(Plan plan) throws Exception;
+    String delete(long id) throws Exception;
+    String update(Plan plan) throws Exception;
 }

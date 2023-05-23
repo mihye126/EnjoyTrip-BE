@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface BlogService {
-    Optional<Blog> findById(long id) throws SQLException;
-    List<Blog> findByAll() throws SQLException;
-    String insert(Blog blog) throws  SQLException;
-    String delete(long id) throws  SQLException;
-    String update(Blog blog) throws  SQLException;
+    Optional<Blog> findById(long id) throws Exception;
+    List<Blog> findByAll() throws Exception;
+    String insert(Blog blog) throws  Exception;
+    String delete(long id) throws  Exception;
+    String update(Blog blog) throws  Exception;
 }

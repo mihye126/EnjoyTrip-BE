@@ -15,36 +15,36 @@ public class NoticeServiceImpl implements NoticeService{
     NoticeMapper noticeMapper;
 
     @Override
-    public Optional<Notice> findById(long id) throws SQLException {
+    public Optional<Notice> findById(long id) throws Exception {
         return noticeMapper.findById(id);
     }
 
     @Override
-    public List<Notice> findAll() throws SQLException {
+    public List<Notice> findAll() throws Exception {
         return noticeMapper.findAll();
     }
 
     @Override
-    public String insert(Notice notice) throws SQLException {
+    public String insert(Notice notice) throws Exception {
         int result=noticeMapper.insert(notice);
         if(result== MyBatisResult.FAIL.getResult())
-            return  "공지 삽입에 실패하였습니다.";
+            throw new IllegalArgumentException("공지 삽입에 실패하였습니다.");
         return "공지 삽입에 성공하였습니다.";
     }
 
     @Override
-    public String delete(long id) throws SQLException {
+    public String delete(long id) throws Exception {
         int result=noticeMapper.delete(id);
         if(result== MyBatisResult.FAIL.getResult())
-            return  "공지 삭제 실패하였습니다.";
+            throw new IllegalArgumentException("해당되는 id가 존재하지 않아 공지삭제에 실패하였습니다.");
         return "공지 삭제 성공하였습니다.";
     }
 
     @Override
-    public String update(Notice notice) throws SQLException {
+    public String update(Notice notice) throws Exception {
         int result=noticeMapper.update(notice);
         if(result== MyBatisResult.FAIL.getResult())
-            return  "공지 수정에 실패하였습니다.";
+            throw new IllegalArgumentException("해당되는 id가 존재하지 않아 공지수정에 실패하였습니다.");
         return "공지 수정에 성공하였습니다.";
     }
 }

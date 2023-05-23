@@ -17,7 +17,7 @@ public class PlanServiceImpl implements PlanService{
     private PlanMapper planMapper;
 
     @Override
-    public List<Plan> findAll() throws SQLException {
+    public List<Plan> findAll() throws Exception {
         return planMapper.findByAll();
     }
 
@@ -27,7 +27,7 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public String insert(Plan plan) throws SQLException{
+    public String insert(Plan plan) throws Exception{
         int result=planMapper.insert(plan);
         if(result== MyBatisResult.FAIL.getResult())
             return "Plan 삽입에 실패하였습니다.";
@@ -35,17 +35,18 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public String delete(long id) throws SQLException{
+    public String delete(long id) throws Exception{
         int result= planMapper.delete(id);
         if(result== MyBatisResult.FAIL.getResult())
-            return "Plan 삭제에 실패하였습니다.";
+            throw new IllegalArgumentException( "해당되는 Plan이 존재하지 않아 Plan 삭제에 실패하였습니다.");
         return "Plan 삭제에 성공하였습니다.";
     }
 
     @Override
-    public String update(Plan plan) throws SQLException{
+    public String update(Plan plan) throws Exception{
         int result= planMapper.update(plan);
         if(result== MyBatisResult.FAIL.getResult())
-            return "Plan 수정에 실패하였습니다.";
-        return "Plan 수정에 성공하였습니다.";    }
+            throw new IllegalArgumentException( "해당되는 Plan이 존재하지 않아 Plan 수정에 실패하였습니다.");
+        return "Plan 수정에 성공하였습니다.";
+    }
 }

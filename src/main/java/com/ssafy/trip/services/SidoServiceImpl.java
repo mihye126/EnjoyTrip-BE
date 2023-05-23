@@ -15,17 +15,17 @@ public class SidoServiceImpl implements SidoService{
     SidoMapper sidoMapper;
 
     @Override
-    public Optional<Sido> findByCode(String code) throws SQLException {
+    public Optional<Sido> findByCode(String code) throws Exception {
         return sidoMapper.findByCode(code);
     }
 
     @Override
-    public Optional<Sido> findByName(String name) throws SQLException {
+    public Optional<Sido> findByName(String name) throws Exception {
         return sidoMapper.findByName(name);
     }
 
     @Override
-    public List<Sido> findAll() throws SQLException {
+    public List<Sido> findAll() throws Exception {
         return sidoMapper.findAll();
     }
 }

@@ -14,17 +14,17 @@ public class GugunServiceImpl implements GugunService{
     GugunMapper gugunMapper;
 
     @Override
-    public Optional<Gugun> findByCode(String code) throws SQLException {
+    public Optional<Gugun> findByCode(String code) throws Exception {
         return gugunMapper.findByCode(code);
     }
 
     @Override
-    public Optional<Gugun> findByName(String name) throws SQLException {
+    public Optional<Gugun> findByName(String name) throws Exception {
         return gugunMapper.findByName(name);
     }
 
     @Override
-    public List<Gugun> findAll() throws SQLException {
+    public List<Gugun> findAll() throws Exception {
         return gugunMapper.findAll();
     }
 }
