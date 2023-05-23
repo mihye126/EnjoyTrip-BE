@@ -25,12 +25,16 @@ public class LoginUser {
         this.userName = user.getUser_name();
         this.userPhone = user.getUser_phone();
         this.userEmail = user.getUser_email();
-        this.accessToken = accessToken;
+        this.accessToken = credentials;
+        this.refreshToken=user.getToken();
         this.expire = expire;
     }
 
     public boolean isExpired() {
         return System.currentTimeMillis() >= expire;
+    }
+    public void setToken(String token) {
+        this.refreshToken = token;
     }
 
 
