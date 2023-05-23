@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public interface PlanService {
     List<Plan> findAll() throws SQLException;
     Optional<Plan> findById(long id) throws SQLException;
-    int insert(Plan plan) throws SQLException;
-    int delete(long id) throws SQLException;
+    String insert(Plan plan) throws SQLException;
+    String delete(long id) throws SQLException;
+    String update(Plan plan) throws SQLException;
 }

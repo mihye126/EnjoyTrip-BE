@@ -9,4 +9,3 @@ create table blog (
 );
 insert into blog (userId, userName, title) values (2, 'ssafy', 'The Road to Glory');
 insert into blog (userId, userName, title) values (2, 'ssafy', 'Harry potter');
-

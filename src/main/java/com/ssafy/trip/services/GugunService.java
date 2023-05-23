@@ -1,14 +1,15 @@
-package com.ssafy.trip.mapper;
+package com.ssafy.trip.services;
 
 import com.ssafy.trip.models.Gugun;
+import com.ssafy.trip.models.Sido;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
-@Mapper
-public interface GugunMapper {
+@Service
+public interface GugunService {
     Optional<Gugun> findByCode(String code) throws SQLException;
     Optional<Gugun> findByName(String name) throws SQLException;
-    List<Gugun> findAll()throws SQLException;
+    List<Gugun> findAll() throws SQLException;
 }

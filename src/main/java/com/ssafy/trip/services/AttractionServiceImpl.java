@@ -4,6 +4,7 @@ package com.ssafy.trip.services;
 import com.ssafy.trip.exception.member.NoSuchMemberException;
 import com.ssafy.trip.mapper.AttractionMapper;
 import com.ssafy.trip.models.Attraction;
+import com.ssafy.trip.models.MyBatisResult;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -28,26 +29,35 @@ public class AttractionServiceImpl  implements AttractionService{ //service에�
     }
 
     @Override
-    public int insert(Attraction attraction) throws SQLException {
+    public String insert(Attraction attraction) throws SQLException {
         // 삽입하기 -> 유저가 추가한 관광지
-        return attractionMapper.insert(attraction);
+        int result=attractionMapper.insert(attraction);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Attraction 삽입에 실패하였습니다.";
+        return "Attraction 삽입에 성공하였습니다.";
     }
 
-    public int delete(String contentID) throws SQLException {
+    public String delete(String contentID) throws SQLException {
         // 삭제하기 -> 유저가 추가한 관광지만 삭제 가능하도록
-        return attractionMapper.delete(contentID);
+        int result=attractionMapper.delete(contentID);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "id에 해당하는 Attraction이 존재하지 않습니다.";
+        return "Attraction 삭제에 성공하였습니다.";
     }
 
     @Override
-    public int update(Attraction attraction) throws SQLException {
-        return attractionMapper.update(attraction);
+    public String update(Attraction attraction) throws SQLException {
+        int result= attractionMapper.update(attraction);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Attraction 업데이트에 실패하였습니다.";
+        return "Attraction 업데이트에  성공하였습니다.";
     }
 
     @Override
-    public List<Attraction> search(String sidoCode, String conentTypeId, String keyword) throws SQLException {
+    public List<Attraction> search(String sidoCode, String contentTypeId, String keyword) throws SQLException {
         Map<String, String> map=new HashMap<>();
         map.put("sidoCode",sidoCode);
-        map.put("conentTypeId",conentTypeId);
+        map.put("contentTypeId",contentTypeId);
         if(keyword==null)
             return  attractionMapper.findBySidoCodeAndContentTypeId(map);
         map.put("keyword",keyword);

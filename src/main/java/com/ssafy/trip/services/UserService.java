@@ -7,18 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-    Optional<User> selectOne(String id, String pw) throws Exception;
     Optional<User> findByEmail(String email) throws Exception;
-
-
-    int updateUser(User user) throws Exception;
-    int updatePassword(String id, String newpass) throws Exception;
-
-    int delete(User user) throws Exception;
-
-    int register(User user) throws Exception;
-
-    Optional<User> check(String id, String pw) throws Exception;
+    String update(User user) throws Exception;
+    String updatePassword(String id, String newpass) throws Exception;
+    String delete(User user) throws Exception;
+    String insert(User user) throws Exception;
 
     public void saveRefreshToken(String userid, String refreshToken) throws Exception;
     public Object getRefreshToken(String userid) throws Exception;

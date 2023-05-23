@@ -4,7 +4,7 @@ import com.ssafy.trip.models.Blog;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import org.mapstruct.Mapper;
+import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface BlogMapper {

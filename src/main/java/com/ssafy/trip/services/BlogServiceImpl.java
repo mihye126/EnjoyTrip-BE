@@ -2,6 +2,7 @@ package com.ssafy.trip.services;
 
 import com.ssafy.trip.mapper.BlogMapper;
 import com.ssafy.trip.models.Blog;
+import com.ssafy.trip.models.MyBatisResult;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -23,17 +24,25 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public int insert(Blog blog) throws SQLException {
-        return blogMapper.insert(blog);
+    public String insert(Blog blog) throws SQLException {
+        int result=blogMapper.insert(blog);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Blog 삽입에 실패하였습니다.";
+        return "Blog 삽입에 성공하였습니다.";
     }
 
     @Override
-    public int delete(long id) throws SQLException {
-        return blogMapper.delete(id);
-    }
+    public String delete(long id) throws SQLException {
+        int result=blogMapper.delete(id);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Blog 삭제에 실패하였습니다.";
+        return "Blog 삭제에 성공하였습니다.";     }
 
     @Override
-    public int update(Blog blog) throws SQLException {
-        return blogMapper.update(blog);
+    public String update(Blog blog) throws SQLException {
+        int result=blogMapper.update(blog);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Blog 수정에 실패하였습니다.";
+        return "Blog 수정에 성공하였습니다.";
     }
 }

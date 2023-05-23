@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.trip.mapper.NoticeMapper">
+
+<!--  Optional<Notice> findById(long id) throws SQLException;-->
+<!--  List<Notice> findByAll() throws SQLException;-->
+<!--  int insert(Notice notice) throws  SQLException;-->
+<!--  int delete(long id) throws  SQLException;-->
+<!--  int update(Notice notice)  throws  SQLException;-->
+
+
+  <select id="findById" resultType="Notice" parameterType="long">
+    select * from notice where id =#{id}
+  </select>
+
+  <select id="findAll" resultType="Notice" >
+    select * from notice
+  </select>
+
+
+  <insert id="insert" parameterType="Notice">
+    insert into notice (title, content)  values (#{title}, #{title})
+  </insert>
+
+
+  <delete id="delete" parameterType="long">
+    delete from notice where id = #{id}
+  </delete>
+
+  <update id="update" parameterType="Notice">
+    Update notice set title=#{title},content=#{content} where id = #{id}
+  </update>
+
+</mapper>

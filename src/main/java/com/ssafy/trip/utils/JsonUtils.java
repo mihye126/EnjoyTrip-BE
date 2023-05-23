@@ -9,6 +9,7 @@ public class JsonUtils {
     private static final ObjectMapper om = new ObjectMapper();
 
     public static <T> T fromJson(String json, Class<T> type) {
+        System.out.println(json);
         try {
             return om.readValue(json, type);
         } catch (Exception e) {

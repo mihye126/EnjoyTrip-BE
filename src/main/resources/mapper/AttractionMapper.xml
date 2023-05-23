@@ -59,21 +59,21 @@
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
-    where info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%'
+    where info.title LIKE   CONCAT('%' , #{keyword} , '%') or description.overview=  CONCAT('%' , #{keyword} , '%')
   </select>
 
   <select id="findByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId" resultType="Attraction" parameterType="String">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
-    where (info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%' ) and  info.sido_code=#{sidoCode} and  info.content_type_id=#{contentTypeId}
+    where (info.title LIKE   CONCAT('%' , #{keyword} , '%') or description.overview=  CONCAT('%' , #{keyword} , '%') ) and  info.sido_code=#{sidoCode} and  info.content_type_id=#{contentTypeId}
   </select>
 
   <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="String">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
-    where (info.title LIKE  '%' + #{keyword} + '%' or info.overview= '%' + #{keyword} + '%' ) and  info.sido_code=#{sidoCode}
+    where (info.title LIKE  CONCAT('%' , #{keyword} , '%') or description.overview= CONCAT('%' , #{keyword} , '%') ) and  info.sido_code=#{sidoCode}
   </select>
 
 

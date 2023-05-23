@@ -1,3 +1,6 @@
+
+use enjoyTrip;
+
 create table plan (
 	id bigint unsigned auto_increment primary key,
 	userName VARCHAR(50) not null,

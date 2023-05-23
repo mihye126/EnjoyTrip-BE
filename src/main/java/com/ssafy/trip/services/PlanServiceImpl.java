@@ -1,6 +1,7 @@
 package com.ssafy.trip.services;
 
 import com.ssafy.trip.mapper.PlanMapper;
+import com.ssafy.trip.models.MyBatisResult;
 import com.ssafy.trip.models.Plan;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,12 +27,25 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public int insert(Plan plan) throws SQLException{
-        return planMapper.insert(plan);
+    public String insert(Plan plan) throws SQLException{
+        int result=planMapper.insert(plan);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Plan 삽입에 실패하였습니다.";
+        return "Plan 삽입에 성공하였습니다.";
     }
 
     @Override
-    public int delete(long id) throws SQLException{
-        return planMapper.delete(id);
+    public String delete(long id) throws SQLException{
+        int result= planMapper.delete(id);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Plan 삭제에 실패하였습니다.";
+        return "Plan 삭제에 성공하였습니다.";
     }
+
+    @Override
+    public String update(Plan plan) throws SQLException{
+        int result= planMapper.update(plan);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "Plan 수정에 실패하였습니다.";
+        return "Plan 수정에 성공하였습니다.";    }
 }

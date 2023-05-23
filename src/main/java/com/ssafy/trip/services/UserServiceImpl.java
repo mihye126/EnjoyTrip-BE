@@ -2,6 +2,7 @@ package com.ssafy.trip.services;
 
 
 import com.ssafy.trip.mapper.UserMapper;
+import com.ssafy.trip.models.MyBatisResult;
 import com.ssafy.trip.models.User;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,47 +17,43 @@ public class UserServiceImpl implements UserService{
     UserMapper userMapper;
 
     @Override
-    public Optional<User> selectOne(String id, String pw) throws Exception {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("pw", pw);
-        return userMapper.selectOne(map);
-    }
-
-    @Override
     public Optional<User> findByEmail(String email) throws Exception {
         return userMapper.findByEmail(email);
     }
 
     @Override
-    public int updateUser(User user) throws Exception{
-        return userMapper.updateUser(user);
+    public String update(User user) throws Exception{
+        int result=userMapper.updateUser(user);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "유저 업데이트에 실패하였습니다.";
+        return "유저 업데이트에 성공하였습니다.";
     }
 
     @Override
-    public int updatePassword(String id, String newpass) throws Exception {
+    public String updatePassword(String id, String newpass) throws Exception {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("pw", newpass);
-        return userMapper.updatePassword(map);
+        int result=userMapper.updatePassword(map);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "비밀번호 업데이트에 실패하였습니다.";
+        return "비밀번호 업데이트에 성공하였습니다.";
     }
 
     @Override
-    public int delete(User user) throws Exception {
-        return userMapper.delete(user);
+    public String delete(User user) throws Exception {
+        int result=userMapper.delete(user);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "유저 삭제에 실패하였습니다.";
+        return "유저 삭제에 성공하였습니다.";
     }
 
     @Override
-    public int register(User user) throws Exception {
-        return userMapper.register(user);
-    }
-
-    @Override
-    public Optional<User> check(String id, String pw) throws Exception {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("pw", pw);
-        return userMapper.check(map);
+    public String insert(User user) throws Exception {
+        int result=userMapper.register(user);
+        if(result== MyBatisResult.FAIL.getResult())
+            return "유저 등록에 실패하였습니다.";
+        return "유저 등록에 성공하였습니다.";
     }
 
 

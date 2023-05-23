@@ -10,6 +10,14 @@
   <!--  private long userId;-->
   <!--  private String userName;-->
 
+  <select id="findById" resultType="Plan" parameterType="long">
+    select * from plan where id =#{id}
+  </select>
+
+  <select id="findByAll" resultType="Plan" >
+    select * from plan
+  </select>
+
 
 
 </mapper>
