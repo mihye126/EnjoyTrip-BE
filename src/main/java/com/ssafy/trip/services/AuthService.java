@@ -38,6 +38,7 @@ public class AuthService {
             String accessToken = jwtTokenProvider.createToken(request.getEmail(),JwtTokenProvider.ACCESS, toJson(loginUser));
             loginUser.setAccessToken(accessToken);
             user.setToken(refreshToken);
+            loginUser.setToken(refreshToken);
 
             userMapper.updateUser(user);
             return loginUser;
