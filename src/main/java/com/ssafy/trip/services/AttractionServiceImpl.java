@@ -1,11 +1,9 @@
 package com.ssafy.trip.services;
 
 
-import com.ssafy.trip.exception.member.NoSuchMemberException;
 import com.ssafy.trip.mapper.AttractionMapper;
 import com.ssafy.trip.models.Attraction;
 import com.ssafy.trip.models.MyBatisResult;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.trip.mapper.ReviewMapper">
+<!--  int avgRatingGroupByContentId(long contentId);-->
+<!--    int countRatingGroupByContentId(long contentId);-->
+<!--    int insert(Review review);-->
+<!--    int update(Review review);-->
+<!--    Review findByUserIdAndContentId(Map map);-->
+
+  <select id="findByUserIdAndContentId" resultType="Review" parameterType="hashMap">
+    select * from review where userId =#{userId} and  content_id =#{contentId}
+  </select>
+
+  <select id="avgRatingGroupByContentId" resultType="ReviewAvg"   parameterType="long">
+    select content_id contentId, round(avg(rate),2) rate
+    from review
+    where content_id = #{contentId}
+    group by content_id;
+  </select>
+
+  <select id="countRatingGroupByContentId" resultType="ReviewCount"   parameterType="long">
+    select content_id contentId,  count(rate) count
+    from review
+    where content_id = #{contentId}
+    group by content_id;
+  </select>
+
+  <insert id="insert" parameterType="Review">
+    insert into review (userId, content_id, rate)  values (#{userId}, #{contentId}, #{rate})
+  </insert>
+
+
+  <update id="update" parameterType="Review">
+    Update review set rate=#{rate} where id = #{id}
+  </update>
+
+
+</mapper>

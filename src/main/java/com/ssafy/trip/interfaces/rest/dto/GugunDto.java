@@ -1,7 +1,6 @@
 package com.ssafy.trip.interfaces.rest.dto;
 
 import com.ssafy.trip.models.Gugun;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;

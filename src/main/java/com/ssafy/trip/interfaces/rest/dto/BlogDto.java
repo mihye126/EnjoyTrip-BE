@@ -1,27 +1,38 @@
-package com.ssafy.trip.models;
+package com.ssafy.trip.interfaces.rest.dto;
 
-import lombok.AllArgsConstructor;
+import com.ssafy.trip.models.Blog;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Notice {
+public class BlogDto {
 
     private long id;
-    private String writeDate;
     private String title;
     private String content;
+    private long userId;
+    private String userName;
+
+    public BlogDto(Blog source) {
+        this.id = source.getId();
+        this.title = source.getTitle();
+        this.content = source.getContent();
+        this.userId = source.getUserId();
+        this.userName = source.getUserName();
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
             .append("id", id)
-            .append("writeDate", writeDate)
+            .append("userId", userId)
+            .append("userName", userName)
             .append("title", title)
             .append("content", content)
             .toString();
     }
+
 }

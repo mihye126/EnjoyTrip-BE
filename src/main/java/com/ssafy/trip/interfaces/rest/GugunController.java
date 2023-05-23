@@ -5,12 +5,9 @@ import static com.ssafy.trip.web.ApiResult.succeed;
 
 import com.ssafy.trip.interfaces.rest.dto.GugunDto;
 import com.ssafy.trip.interfaces.rest.dto.SearchParameter;
-import com.ssafy.trip.interfaces.rest.dto.SidoDto;
 import com.ssafy.trip.services.GugunService;
-import com.ssafy.trip.services.SidoService;
 import com.ssafy.trip.web.ApiResult;
 import io.swagger.annotations.Api;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;

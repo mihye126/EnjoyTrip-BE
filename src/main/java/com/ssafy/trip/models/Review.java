@@ -6,22 +6,23 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Notice {
+@AllArgsConstructor
+@Getter
+public class Review {
 
     private long id;
-    private String writeDate;
-    private String title;
-    private String content;
+    private long userId;
+    private long contentId;
+    private int rate;
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
             .append("id", id)
-            .append("writeDate", writeDate)
-            .append("title", title)
-            .append("content", content)
+            .append("userId", userId)
+            .append("contentId", contentId)
+            .append("rate", rate)
             .toString();
     }
 }

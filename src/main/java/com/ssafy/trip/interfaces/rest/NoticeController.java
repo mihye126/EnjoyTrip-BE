@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController
-@Api("Trip Planner")
+@Api("전체 공지")
 public class NoticeController {
 
     @Autowired
