@@ -3,23 +3,16 @@ package com.ssafy.trip.interfaces.rest;
 import static com.ssafy.trip.web.ApiResult.failed;
 import static com.ssafy.trip.web.ApiResult.succeed;
 
-import com.ssafy.trip.interfaces.rest.dto.PlanDto;
 import com.ssafy.trip.interfaces.rest.dto.ReviewAvgDto;
 import com.ssafy.trip.interfaces.rest.dto.ReviewCountDto;
-import com.ssafy.trip.models.Plan;
 import com.ssafy.trip.models.Review;
-import com.ssafy.trip.services.PlanService;
 import com.ssafy.trip.services.ReviewService;
 import com.ssafy.trip.web.ApiResult;
 import io.swagger.annotations.Api;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 

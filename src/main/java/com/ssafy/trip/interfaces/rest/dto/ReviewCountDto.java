@@ -1,6 +1,5 @@
 package com.ssafy.trip.interfaces.rest.dto;
 
-import com.ssafy.trip.models.ReviewAvg;
 import com.ssafy.trip.models.ReviewCount;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

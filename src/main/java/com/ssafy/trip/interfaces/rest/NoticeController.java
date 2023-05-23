@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Api("Trip Planner")
+@Api("전체 공지")
 public class NoticeController {
 
     @Autowired

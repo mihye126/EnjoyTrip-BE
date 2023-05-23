@@ -3,7 +3,6 @@ package com.ssafy.trip.services;
 import com.ssafy.trip.mapper.NoticeMapper;
 import com.ssafy.trip.models.MyBatisResult;
 import com.ssafy.trip.models.Notice;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

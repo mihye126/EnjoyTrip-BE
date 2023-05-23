@@ -2,19 +2,13 @@ package com.ssafy.trip.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 
 public class WeatherService {
 

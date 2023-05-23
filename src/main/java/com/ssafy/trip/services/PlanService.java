@@ -1,7 +1,6 @@
 package com.ssafy.trip.services;
 
 import com.ssafy.trip.models.Plan;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,6 @@ package com.ssafy.trip.services;
 
 import com.ssafy.trip.mapper.GugunMapper;
 import com.ssafy.trip.models.Gugun;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
