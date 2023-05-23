@@ -3,11 +3,12 @@ package com.ssafy.trip.services;
 import com.ssafy.trip.mapper.BlogMapper;
 import com.ssafy.trip.models.Blog;
 import com.ssafy.trip.models.MyBatisResult;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class BlogServiceImpl implements BlogService{
 
     @Autowired
@@ -19,7 +20,7 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    public List<Blog> findByAll() throws Exception {
+    public List<Blog> findAll() throws Exception {
         return blogMapper.findByAll();
     }
 
