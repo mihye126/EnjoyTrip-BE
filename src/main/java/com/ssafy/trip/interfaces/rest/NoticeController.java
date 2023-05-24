@@ -9,6 +9,7 @@ import com.ssafy.trip.services.NoticeService;
 import com.ssafy.trip.web.ApiResult;
 import io.swagger.annotations.Api;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,29 +22,43 @@ public class NoticeController {
     @Autowired
     NoticeService noticeService;
 
-    @GetMapping("/notices")
-    public ApiResult<List<NoticeDto>> list(){
+    @GetMapping("/notices/{pageNum}")
+    public ApiResult<List<NoticeDto>> list(@PathVariable int pageNum){
+        System.out.println(pageNum);
+//        int pageNum = (int)page;
         try {
-            return succeed(noticeService.findAll().stream().map(NoticeDto::new).collect(Collectors.toList()));
+            return succeed(noticeService.findAll(pageNum).stream().map(NoticeDto::new).collect(Collectors.toList()));
         } catch (Exception e) {
             return failed(e);
         }
 
     }
 
-    @GetMapping("/notices/{id}")
-    public ApiResult<NoticeDto> read(@PathVariable long id){
+    @GetMapping("/notices/count")
+    public ApiResult<Map> count(){
         try {
-            return succeed(noticeService.findById(id).map(NoticeDto::new).orElseThrow(() -> new IllegalArgumentException("해당 id의 공지가 없습니다.")));
+            return succeed(noticeService.count());
         } catch (Exception e) {
-            e.printStackTrace();
             return failed(e);
         }
 
     }
+
+//    @GetMapping("/notices/{id}")
+//    public ApiResult<NoticeDto> read(@PathVariable long id){
+//        System.out.println(id);
+//        try {
+//            return succeed(noticeService.findById(id).map(NoticeDto::new).orElseThrow(() -> new IllegalArgumentException("해당 id의 공지가 없습니다.")));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return failed(e);
+//        }
+//
+//    }
 
     @DeleteMapping("/notices/{id}")
     public ApiResult<String> delete(@PathVariable long id){
+        System.out.println("들어옴");
         try {
             return succeed(noticeService.delete(id));
         } catch (Exception e) {
