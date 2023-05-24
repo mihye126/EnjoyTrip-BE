@@ -9,8 +9,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface NoticeMapper {
     Optional<Notice> findById(long id) throws SQLException;
-    List<Notice> findAll() throws SQLException;
+    List<Notice> findAll(int pageNum) throws SQLException;
     int insert(Notice notice) throws  SQLException;
     int delete(long id) throws  SQLException;
     int update(Notice notice)  throws  SQLException;
+
+    int count()  throws  SQLException;
+
 }
