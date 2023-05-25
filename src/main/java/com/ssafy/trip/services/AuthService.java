@@ -22,7 +22,7 @@ public class AuthService {
 
 
     public LoginUser login(TokenRequest request) {
-
+        System.out.println(request);
         try {
             User user = userMapper.findByEmail(request.getEmail())
                 .orElseThrow(NoSuchMemberException::new);

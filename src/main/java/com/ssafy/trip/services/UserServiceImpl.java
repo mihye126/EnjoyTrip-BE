@@ -21,64 +21,59 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public Optional<User> findById(long id) throws Exception {
+        return userMapper.findById(id);
+    }
+
+    @Override
     public String update(User user) throws Exception{
         int result=userMapper.updateUser(user);
         if(result== MyBatisResult.FAIL.getResult())
-            return "유저 업데이트에 실패하였습니다.";
+            throw  new IllegalAccessException("유저 업데이트에 실패하였습니다.");
         return "유저 업데이트에 성공하였습니다.";
     }
 
     @Override
-    public String updatePassword(String id, String newpass) throws Exception {
-        Map<String, String> map = new HashMap<>();
+    public String updatePassword(long id, String newpass) throws Exception {
+        Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("pw", newpass);
         int result=userMapper.updatePassword(map);
         if(result== MyBatisResult.FAIL.getResult())
-            return "비밀번호 업데이트에 실패하였습니다.";
+            throw  new IllegalAccessException( "비밀번호 업데이트에 실패하였습니다.");
         return "비밀번호 업데이트에 성공하였습니다.";
     }
 
     @Override
-    public String delete(User user) throws Exception {
-        int result=userMapper.delete(user);
+    public String delete(long id) throws Exception {
+        int result=userMapper.delete(id);
         if(result== MyBatisResult.FAIL.getResult())
-            return "유저 삭제에 실패하였습니다.";
+            throw  new IllegalAccessException( "유저 삭제에 실패하였습니다.");
         return "유저 삭제에 성공하였습니다.";
     }
 
     @Override
     public String insert(User user) throws Exception {
-        int result=userMapper.register(user);
+        int result=userMapper.insert(user);
         if(result== MyBatisResult.FAIL.getResult())
-            return "유저 등록에 실패하였습니다.";
+            throw  new IllegalAccessException( "유저 등록에 실패하였습니다.");
         return "유저 등록에 성공하였습니다.";
     }
 
-
     @Override
-    public void saveRefreshToken(String userid, String refreshToken) throws Exception {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("user_id", userid);
+    public String saveRefreshToken(long id, String refreshToken) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
         map.put("token", refreshToken);
-        userMapper.saveRefreshToken(map);
+        int result=userMapper.saveRefreshToken(map);
+        return null;
     }
 
     @Override
-    public Object getRefreshToken(String userid) throws Exception {
-        return userMapper.getRefreshToken(userid);
+    public String getRefreshToken(long id) throws Exception {
+        return userMapper.getRefreshToken(id);
     }
 
-    @Override
-    public void deleRefreshToken(String userid) throws Exception {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("userid", userid);
-        map.put("token", null);
-        userMapper.deleteRefreshToken(map);
-    }
 
-    @Override
-    public User userInfo(String userid) throws Exception {
-        return userMapper.userInfo(userid);
-    }
+
 }

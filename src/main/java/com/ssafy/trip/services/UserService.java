@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     Optional<User> findByEmail(String email) throws Exception;
+    Optional<User> findById(long id) throws Exception;
+
     String update(User user) throws Exception;
-    String updatePassword(String id, String newpass) throws Exception;
-    String delete(User user) throws Exception;
+    String updatePassword(long id, String newpass) throws Exception;
+    String delete(long id) throws Exception;
     String insert(User user) throws Exception;
 
-    public void saveRefreshToken(String userid, String refreshToken) throws Exception;
-    public Object getRefreshToken(String userid) throws Exception;
-    public void deleRefreshToken(String userid) throws Exception;
-    public User userInfo(String userid) throws Exception;
+    public String saveRefreshToken(long id, String refreshToken) throws Exception;
+    public String getRefreshToken(long id) throws Exception;
 }

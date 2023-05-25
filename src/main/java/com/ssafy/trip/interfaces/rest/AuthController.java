@@ -4,6 +4,7 @@ import static com.ssafy.trip.web.ApiResult.succeed;
 
 import com.ssafy.trip.interfaces.rest.dto.TokenRequest;
 import com.ssafy.trip.models.LoginUser;
+import com.ssafy.trip.models.User;
 import com.ssafy.trip.services.AuthService;
 import com.ssafy.trip.web.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,7 @@ public class AuthController {
     public ApiResult<String> logout(@RequestBody Long id) {
         return succeed(authService.logout(id));
     }
+
+
+
 }
