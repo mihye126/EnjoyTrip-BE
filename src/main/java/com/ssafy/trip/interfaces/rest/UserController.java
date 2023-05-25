@@ -58,6 +58,7 @@ public class UserController {
             return failed(e);
         }
     }
+    @PutMapping("/modifyuserpw")
 
     public  ApiResult<String> updatePassword(@RequestBody UserPasswordUpdateRequest request){
         try {
@@ -66,8 +67,10 @@ public class UserController {
             return failed(e);
         }
     }
+    @PostMapping("/findbyemail")
 
     public  ApiResult<UserDto> findByEmail(@RequestBody Email email){
+        System.out.println("tests");
         try {
             return succeed(userService.findByEmail(email.getEmail()).map(UserDto::new).orElseThrow(IllegalAccessError::new));
         } catch (Exception e) {
