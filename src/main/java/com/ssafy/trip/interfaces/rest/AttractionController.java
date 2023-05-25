@@ -79,10 +79,11 @@ public class AttractionController {
     public ApiResult<List<AttractionDto>> search(
         @RequestParam(value = "sidoCode", required = true) String sidoCode,
         @RequestParam(value = "contentTypeId", required = false, defaultValue = "12") String contentTypeId,
-        @RequestParam(value = "keyword", required = false) String keyword) {
+        @RequestParam(value = "keyword", required = false) String keyword,
+        @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum) {
         System.out.println("sidoCode: "+sidoCode+", conentTypeId: "+contentTypeId+", keyword:"+keyword);
         try {
-            return succeed(attractionService.search(sidoCode, contentTypeId, keyword).stream()
+            return succeed(attractionService.search(sidoCode, contentTypeId, keyword,pageNum).stream()
                 .map(AttractionDto::new).collect(Collectors.toList()));
         } catch (Exception e) {
             return failed(e);

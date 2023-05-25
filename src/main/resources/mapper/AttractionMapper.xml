@@ -25,6 +25,7 @@
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
     on info.content_id= `description`.content_id
+    order by info.content_id desc Limit #{pageNum}, 10;
     </select>
 
   <select id="findByContentID" resultType="Attraction" parameterType="String">
@@ -34,18 +35,20 @@
     where info.content_id=#{contentID}
   </select>
 
-  <select id="findBySidoCode" resultType="Attraction" parameterType="String">
+  <select id="findBySidoCode" resultType="Attraction" parameterType="hashMap">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where description.sido_code=#{sidoCode}
+    order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
-  <select id="findByContentTypeId" resultType="Attraction" parameterType="String">
+  <select id="findByContentTypeId" resultType="Attraction" parameterType="hashMap">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where description.content_type_id=#{contentTypeId}
+    order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
   <select id="findBySidoCodeAndContentTypeId" resultType="Attraction" parameterType="hashMap">
@@ -53,35 +56,40 @@
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where info.content_type_id=#{contentTypeId} and info.sido_code=#{sidoCode}
+    order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
-  <select id="findByOverviewContainingOrTitleContaining" resultType="Attraction" parameterType="String">
+  <select id="findByOverviewContainingOrTitleContaining" resultType="Attraction" parameterType="hashMap">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where info.title LIKE   CONCAT('%' , #{keyword} , '%') or description.overview=  CONCAT('%' , #{keyword} , '%')
+    order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
-  <select id="findByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId" resultType="Attraction" parameterType="String">
+  <select id="findByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId" resultType="Attraction" parameterType="hashMap">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where (info.title LIKE   CONCAT('%' , #{keyword} , '%') or description.overview=  CONCAT('%' , #{keyword} , '%') ) and  info.sido_code=#{sidoCode} and  info.content_type_id=#{contentTypeId}
+    order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
-  <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="String">
+  <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="hashMap">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where (info.title LIKE  CONCAT('%' , #{keyword} , '%') or description.overview= CONCAT('%' , #{keyword} , '%') ) and  info.sido_code=#{sidoCode}
+    order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
 
-  <select id="findByOverviewContainingOrTitleContainingAndContentTypeId" resultType="Attraction" parameterType="String">
+  <select id="findByOverviewContainingOrTitleContainingAndContentTypeId" resultType="Attraction" parameterType="hashMap">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
                                         on info.content_id= `description`.content_id
     where (info.title LIKE  '%' + #{keyword} + '%' or description.overview= '%' + #{keyword} + '%' ) and  info.content_type_id=#{contentTypeId}
+    order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
   <insert id="insert" parameterType="Attraction">

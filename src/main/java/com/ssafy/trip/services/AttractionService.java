@@ -18,7 +18,7 @@ public interface AttractionService {
     String delete(String contentID) throws Exception;
     String update(Attraction attraction) throws Exception;
 
-    List<Attraction>  search(String sidoCode, String conentTypeId, String keyword)  throws Exception;
+    List<Attraction>  search(String sidoCode, String conentTypeId, String keyword,int pageNum)  throws Exception;
 //    List<Attraction> selectAll() throws SQLException;
 
 

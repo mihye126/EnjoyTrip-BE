@@ -7,6 +7,7 @@ import com.ssafy.trip.models.MyBatisResult;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -52,10 +53,11 @@ public class AttractionServiceImpl  implements AttractionService{ //serviceÏóêÏÑ
     }
 
     @Override
-    public List<Attraction> search(String sidoCode, String contentTypeId, String keyword) throws Exception {
-        Map<String, String> map=new HashMap<>();
+    public List<Attraction> search(String sidoCode, String contentTypeId, String keyword,int pageNum) throws Exception {
+        Map<String, Object> map=new HashMap<>();
         map.put("sidoCode",sidoCode);
         map.put("contentTypeId",contentTypeId);
+        map.put("pageNum",pageNum*10);
         if(keyword==null)
             return  attractionMapper.findBySidoCodeAndContentTypeId(map);
         map.put("keyword",keyword);
