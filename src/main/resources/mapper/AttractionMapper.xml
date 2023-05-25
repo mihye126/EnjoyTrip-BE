@@ -59,6 +59,13 @@
     order by info.content_id desc Limit #{pageNum}, 10;
   </select>
 
+  <select id="countFindBySidoCodeAndContentTypeId" resultType="Count" parameterType="hashMap">
+    select count(*) count
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where info.content_type_id=#{contentTypeId} and info.sido_code=#{sidoCode}
+  </select>
+
   <select id="findByOverviewContainingOrTitleContaining" resultType="Attraction" parameterType="hashMap">
     select info.content_id contentID, content_type_id contentTypeID, title, concat(addr1,' ',addr2) address, tel, first_image firstImage, sido_code sidoCode,gugun_code gugunCode,  latitude, longitude, overview
     from attraction_info info left join attraction_description `description`
@@ -73,6 +80,13 @@
                                         on info.content_id= `description`.content_id
     where (info.title LIKE   CONCAT('%' , #{keyword} , '%') or description.overview=  CONCAT('%' , #{keyword} , '%') ) and  info.sido_code=#{sidoCode} and  info.content_type_id=#{contentTypeId}
     order by info.content_id desc Limit #{pageNum}, 10;
+  </select>
+
+  <select id="countFindByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId" resultType="Count" parameterType="hashMap">
+    select count(*) count
+    from attraction_info info left join attraction_description `description`
+                                        on info.content_id= `description`.content_id
+    where (info.title LIKE   CONCAT('%' , #{keyword} , '%') or description.overview=  CONCAT('%' , #{keyword} , '%') ) and  info.sido_code=#{sidoCode} and  info.content_type_id=#{contentTypeId}
   </select>
 
   <select id="findByOverviewContainingOrTitleContainingAndSidoCode" resultType="Attraction" parameterType="hashMap">

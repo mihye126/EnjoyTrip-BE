@@ -3,6 +3,7 @@ package com.ssafy.trip.services;
 
 import com.ssafy.trip.mapper.AttractionMapper;
 import com.ssafy.trip.models.Attraction;
+import com.ssafy.trip.models.Count;
 import com.ssafy.trip.models.MyBatisResult;
 import java.util.HashMap;
 import java.util.List;
@@ -63,5 +64,16 @@ public class AttractionServiceImpl  implements AttractionService{ //serviceÏóêÏÑ
         map.put("keyword",keyword);
         return attractionMapper.findByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId(map);
 
+    }
+
+    @Override
+    public Optional<Count> count(String sidoCode, String contentTypeId, String keyword) throws Exception {
+        Map<String, Object> map=new HashMap<>();
+        map.put("sidoCode",sidoCode);
+        map.put("contentTypeId",contentTypeId);
+        if(keyword==null)
+            return  attractionMapper.countFindBySidoCodeAndContentTypeId(map);
+        map.put("keyword",keyword);
+        return attractionMapper.countFindByOverviewContainingOrTitleContainingAndSidoCodeAndContentTypeId(map);
     }
 }

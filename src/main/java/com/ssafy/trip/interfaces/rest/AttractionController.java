@@ -5,7 +5,9 @@ import static com.ssafy.trip.web.ApiResult.succeed;
 
 import com.ssafy.trip.exception.member.NoSuchMemberException;
 import com.ssafy.trip.interfaces.rest.dto.AttractionDto;
+import com.ssafy.trip.interfaces.rest.dto.CountDto;
 import com.ssafy.trip.models.Attraction;
+import com.ssafy.trip.models.Count;
 import com.ssafy.trip.services.AttractionService;
 import com.ssafy.trip.web.ApiResult;
 import io.swagger.annotations.Api;
@@ -85,6 +87,20 @@ public class AttractionController {
         try {
             return succeed(attractionService.search(sidoCode, contentTypeId, keyword,pageNum).stream()
                 .map(AttractionDto::new).collect(Collectors.toList()));
+        } catch (Exception e) {
+            return failed(e);
+        }
+    }
+
+    @GetMapping("/trips/count")
+    @ApiOperation(notes = "여행지 1개의 정보를 담고 있는 페이지.", value = "Trip Detail")
+    public ApiResult<CountDto> count(
+        @RequestParam(value = "sidoCode", required = true) String sidoCode,
+        @RequestParam(value = "contentTypeId", required = false, defaultValue = "12") String contentTypeId,
+        @RequestParam(value = "keyword", required = false) String keyword ) {
+
+        try {
+            return succeed(attractionService.count(sidoCode, contentTypeId, keyword).map(CountDto::new).orElse(new CountDto()));
         } catch (Exception e) {
             return failed(e);
         }
