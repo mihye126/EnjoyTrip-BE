@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Api("전체 공지")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BlogController {
     @Autowired
     BlogService blogService;
 
 
-    @GetMapping("/posts")
+    @GetMapping("/blogs")
     public ApiResult<List<BlogDto>> list(){
         try {
             return succeed(blogService.findAll().stream().map(BlogDto::new).collect(Collectors.toList()));
@@ -36,7 +38,7 @@ public class BlogController {
 
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/blogs/{id}")
     public ApiResult<BlogDto> read(@PathVariable long id){
         try {
             return succeed(blogService.findById(id).map(BlogDto::new).orElseThrow(() -> new IllegalArgumentException("해당 id의 블로그 포스트가 없습니다.")));
@@ -47,7 +49,7 @@ public class BlogController {
 
     }
 
-    @DeleteMapping("/posts/{id}")
+    @DeleteMapping("/blogs/{id}")
     public ApiResult<String> delete(@PathVariable long id){
         try {
             return succeed(blogService.delete(id));
@@ -58,7 +60,7 @@ public class BlogController {
     }
 
 
-    @PostMapping("/posts")
+    @PostMapping("/blogs")
     public ApiResult<String> insert(@RequestBody Blog blog){
         try {
             return succeed(blogService.insert(blog));
@@ -68,11 +70,13 @@ public class BlogController {
 
     }
 
-    @PutMapping("/posts")
+    @PutMapping("/blogs")
     public ApiResult<String> update(@RequestBody Blog blog){
+        System.out.println(blog);
         try {
             return succeed(blogService.update(blog));
         } catch (Exception e) {
+            e.printStackTrace();
             return failed(e);
         }
 

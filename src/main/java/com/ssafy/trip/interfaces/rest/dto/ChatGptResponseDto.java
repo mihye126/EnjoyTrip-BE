@@ -1,4 +1,4 @@
-package com.ssafy.trip.interfaces.rest;
+package com.ssafy.trip.interfaces.rest.dto;
 
 import java.awt.Choice;
 import java.io.Serializable;
@@ -19,9 +19,7 @@ public class ChatGptResponseDto implements Serializable {
     private List<Choice> choices;
 
     @Builder
-    public ChatGptResponseDto(String id, String object,
-        LocalDate created, String model,
-        List<Choice> choices) {
+    public ChatGptResponseDto(String id, String object,  LocalDate created, String model, List<Choice> choices) {
         this.id = id;
         this.object = object;
         this.created = created;

@@ -1,9 +1,8 @@
 package com.ssafy.trip.services;
 
 import com.ssafy.trip.config.ChatGptConfig;
-import com.ssafy.trip.interfaces.rest.ChatGptResponseDto;
+import com.ssafy.trip.interfaces.rest.dto.ChatGptResponseDto;
 import com.ssafy.trip.interfaces.rest.dto.ChatGptRequestDto;
-import com.ssafy.trip.interfaces.rest.dto.QuestionRequestDto;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -28,7 +27,6 @@ public class ChatGptService {
             ChatGptConfig.URL,
             chatGptRequestDtoHttpEntity,
             ChatGptResponseDto.class);
-
         return responseEntity.getBody();
     }
 

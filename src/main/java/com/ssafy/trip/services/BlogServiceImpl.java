@@ -6,9 +6,9 @@ import com.ssafy.trip.models.MyBatisResult;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class BlogServiceImpl implements BlogService{
 
     @Autowired
@@ -42,6 +42,7 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public String update(Blog blog) throws Exception {
         int result=blogMapper.update(blog);
+        System.out.println(result);
         if(result== MyBatisResult.FAIL.getResult())
             throw new IllegalArgumentException( "해당되는 Blog가 존재하지 않아 Blog 수정에 실패하였습니다.");
         return "Blog 수정에 성공하였습니다.";
