@@ -27,7 +27,7 @@ public class AuthService {
             User user = userMapper.findByEmail(request.getEmail())
                 .orElseThrow(NoSuchMemberException::new);
             user.checkPassword(request.getPassword());
-
+            System.out.println(user);
             LoginUser loginUser=new LoginUser(user);
 
             loginUser.setExpire(System.currentTimeMillis()+JwtTokenProvider.REFRESH_TOKEN_EXPIRE_MINUTES);
@@ -40,7 +40,7 @@ public class AuthService {
             user.setToken(refreshToken);
             loginUser.setToken(refreshToken);
 
-            userMapper.updateUser(user);
+            userMapper.update(user);
             return loginUser;
 
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class AuthService {
         try {
             User user=userMapper.findById(id).orElseThrow(NoSuchMemberException::new);
             user.setToken(null);
-            userMapper.updateUser(user);
+            userMapper.update(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

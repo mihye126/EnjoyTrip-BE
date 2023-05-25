@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String update(User user) throws Exception{
-        int result=userMapper.updateUser(user);
+        int result=userMapper.update(user);
         if(result== MyBatisResult.FAIL.getResult())
             throw  new IllegalAccessException("유저 업데이트에 실패하였습니다.");
         return "유저 업데이트에 성공하였습니다.";

@@ -25,7 +25,7 @@
 	</delete>
 
 	<update id="update" parameterType="User">
-		Update user set user_pw =#{user_pw}, user_name= #{user_name}, user_phone=#{user_phone} where id = #{id}
+		Update user set user_pw =#{user_pw}, user_name= #{user_name}, user_phone=#{user_phone}, token=#{token} where id = #{id}
 	</update>
 
 	<update id="updatePassword" parameterType="map">

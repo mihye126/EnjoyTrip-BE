@@ -12,7 +12,7 @@ public interface UserMapper {
     Optional<User> findByEmail(String email) throws SQLException;
     Optional<User> findById(long id) throws SQLException;
 
-    int updateUser(User user) throws SQLException;
+    int update(User user) throws SQLException;
     int updatePassword(Map map) throws SQLException;
     int delete(long id) throws SQLException;  //delete, deleteByID
     int insert(User user) throws SQLException; //insert
