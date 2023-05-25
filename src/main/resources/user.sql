@@ -9,7 +9,7 @@ create table `user` (
 	user_pw VARCHAR(50) NOT NULL,
 	user_name VARCHAR(50)NOT NULL,
 	user_phone VARCHAR(50)NOT NULL,
-	user_email VARCHAR(50) NOT NULL,
+	user_email VARCHAR(50) NOT NULL unique ,
 	joindate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	admin_check boolean NOT NULL,
 	`token` VARCHAR(1000) NULL DEFAULT NULL,
