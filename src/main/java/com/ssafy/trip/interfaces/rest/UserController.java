@@ -4,6 +4,7 @@ import static com.ssafy.trip.web.ApiResult.failed;
 import static com.ssafy.trip.web.ApiResult.succeed;
 
 import com.ssafy.trip.exception.member.NoSuchMemberException;
+import com.ssafy.trip.interfaces.rest.dto.Email;
 import com.ssafy.trip.interfaces.rest.dto.UserDto;
 import com.ssafy.trip.interfaces.rest.dto.UserPasswordUpdateRequest;
 import com.ssafy.trip.models.User;
@@ -50,7 +51,6 @@ public class UserController {
     }
 
     @PutMapping("/updateloginuser")
-
     public  ApiResult<String> update(@RequestBody User user){
         try {
             return succeed(userService.update(user));
@@ -62,6 +62,14 @@ public class UserController {
     public  ApiResult<String> updatePassword(@RequestBody UserPasswordUpdateRequest request){
         try {
             return succeed(userService.updatePassword(request.getId(),request.getPassword()));
+        } catch (Exception e) {
+            return failed(e);
+        }
+    }
+
+    public  ApiResult<UserDto> findByEmail(@RequestBody Email email){
+        try {
+            return succeed(userService.findByEmail(email.getEmail()).map(UserDto::new).orElseThrow(IllegalAccessError::new));
         } catch (Exception e) {
             return failed(e);
         }
