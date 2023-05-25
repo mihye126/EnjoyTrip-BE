@@ -14,7 +14,7 @@ public interface UserMapper {
 
     int update(User user) throws SQLException;
     int updatePassword(Map map) throws SQLException;
-    int delete(long id) throws SQLException;  //delete, deleteByID
+    int delete(String id) throws SQLException;  //delete, deleteByID
     int insert(User user) throws SQLException; //insert
 
     int saveRefreshToken(Map map) throws SQLException;

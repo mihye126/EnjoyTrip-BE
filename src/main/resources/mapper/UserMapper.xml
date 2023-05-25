@@ -15,17 +15,23 @@
 	</select>
 
 
+<!--	<insert id="insert" parameterType="User">-->
+<!--		insert into user values (#{id}, #{user_pw}, #{user_name}, #{user_phone},#{user_email}, CURRENT_TIMESTAMP, #{admin_check}, #{token})-->
+<!--	</insert>-->
+
 	<insert id="insert" parameterType="User">
-		insert into user values (#{id}, #{pw}, #{username}, #{phone}, #{admin_check}, #{email}, #{joindate}, #{token})
+		INSERT INTO user ( user_pw, user_name, user_phone, user_email, admin_check, token)
+		VALUES ( #{user_pw}, #{user_name}, #{user_phone}, #{user_email}, #{admin_check}, #{token})
 	</insert>
 
 
+
 	<delete id="delete" parameterType="String">
-		delete from user where user_id = #{id}
+		delete from user where id = #{id}
 	</delete>
 
 	<update id="update" parameterType="User">
-		Update user set user_pw =#{user_pw}, user_name= #{user_name}, user_phone=#{user_phone}, token=#{token} where id = #{id}
+		Update user set user_name= #{user_name}, user_phone=#{user_phone} where id = #{id}
 	</update>
 
 	<update id="updatePassword" parameterType="map">

@@ -58,7 +58,7 @@ public class AttractionServiceImpl  implements AttractionService{ //serviceÏóêÏÑ
         Map<String, Object> map=new HashMap<>();
         map.put("sidoCode",sidoCode);
         map.put("contentTypeId",contentTypeId);
-        map.put("pageNum",pageNum*10);
+        map.put("pageNum",pageNum);
         if(keyword==null)
             return  attractionMapper.findBySidoCodeAndContentTypeId(map);
         map.put("keyword",keyword);

@@ -10,16 +10,14 @@ import com.ssafy.trip.models.User;
 import com.ssafy.trip.services.UserService;
 import com.ssafy.trip.web.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
     @Autowired
     UserService userService;
+
 
     public ApiResult<UserDto> findById(@PathVariable long id){
         try {
@@ -29,7 +27,9 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("/deleteuser/{id}")
     public ApiResult<String> withdrawal(@PathVariable long id){
+        System.out.println("삭제"+id);
         try {
             return succeed(userService.delete(id));
         } catch (Exception e) {
@@ -38,14 +38,18 @@ public class UserController {
     }
 
 
+    @PostMapping("/registeruser")
 
     public  ApiResult<String> register(@RequestBody User user){
         try {
             return succeed(userService.insert(user));
         } catch (Exception e) {
+            System.out.println(e);
             return failed(e);
         }
     }
+
+    @PutMapping("/updateloginuser")
 
     public  ApiResult<String> update(@RequestBody User user){
         try {

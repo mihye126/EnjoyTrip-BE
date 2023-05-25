@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String delete(long id) throws Exception {
-        int result=userMapper.delete(id);
+        int result=userMapper.delete(String.valueOf(id));
         if(result== MyBatisResult.FAIL.getResult())
             throw  new IllegalAccessException( "유저 삭제에 실패하였습니다.");
         return "유저 삭제에 성공하였습니다.";
@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public String insert(User user) throws Exception {
         int result=userMapper.insert(user);
+        System.out.println(user);
         if(result== MyBatisResult.FAIL.getResult())
             throw  new IllegalAccessException( "유저 등록에 실패하였습니다.");
         return "유저 등록에 성공하였습니다.";
